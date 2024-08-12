@@ -760,11 +760,19 @@ public class SerializerFactory extends AbstractSerializerFactory
         }
     }
 
-    private static boolean isZoneId(Class cl) {
+    private static Class<?> ZONE_ID_CLASS_CACHE = null;
+
+    static {
         try {
-            return isHigherThanJdk8 && Class.forName("java.time.ZoneId").isAssignableFrom(cl);
+            ZONE_ID_CLASS_CACHE = Class.forName("java.time.ZoneId");
         } catch (ClassNotFoundException e) {
             // ignore
+        }
+    }
+
+    private static boolean isZoneId(Class cl) {
+        if (ZONE_ID_CLASS_CACHE != null) {
+            return isHigherThanJdk8 && ZONE_ID_CLASS_CACHE.isAssignableFrom(cl);
         }
         return false;
     }
