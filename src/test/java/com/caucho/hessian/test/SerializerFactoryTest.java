@@ -21,8 +21,8 @@ import com.caucho.hessian.io.SerializerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.Color;
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -41,7 +41,7 @@ public class SerializerFactoryTest {
             .get(serializerFactory));
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
 
-        final String testClassName = Color.class.getName();
+        final String testClassName = Date.class.getName();
         Deserializer d1 = serializerFactory.getDeserializer(testClassName);
         Assert.assertNotNull("TestClass Deserializer!", d1);
 
@@ -67,7 +67,7 @@ public class SerializerFactoryTest {
             .get(serializerFactory));
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
 
-        final String testClassName = Color.class.getName();
+        final String testClassName = Date.class.getName();
         Deserializer d1 = serializerFactory.getDeserializer(testClassName);
         Assert.assertNotNull("TestClass Deserializer!", d1);
 
@@ -93,7 +93,7 @@ public class SerializerFactoryTest {
             .get(serializerFactory));
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
 
-        final String testClassName = Color.class.getName();
+        final String testClassName = Date.class.getName();
         Deserializer d1 = serializerFactory.getDeserializer(testClassName);
         Assert.assertNotNull("TestClass Deserializer!", d1);
 
