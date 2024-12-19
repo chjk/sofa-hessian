@@ -11,12 +11,20 @@ public class Hessian2InputTest {
 
     SerializerFactory serializerFactory = new SerializerFactory();
 
+    int[] sizeList = new int[] {
+            0, 2, 16, 512, 1024,
+            0x8000, 0x8000 + 1,
+            64 * 1024, 64 * 1024 * 1024
+    };
+
     @Test
     public void testSerialize() {
-        byte[] originBytes = generateLargeByteArray(64 * 1024);
-        byte[] encodeBytes = hessianEncodeByte(originBytes);
-        byte[] decodeBytes = hessianDecodeByte(encodeBytes);
-        Assert.assertArrayEquals(originBytes, decodeBytes);
+        for (int i = 0; i < sizeList.length; i++) {
+            byte[] originBytes = generateLargeByteArray(sizeList[i]);
+            byte[] encodeBytes = hessianEncodeByte(originBytes);
+            byte[] decodeBytes = hessianDecodeByte(encodeBytes);
+            Assert.assertArrayEquals(originBytes, decodeBytes);
+        }
     }
 
     @Test
